@@ -1,0 +1,32 @@
+.Continents {
+  position: relative;
+  margin: 10px 20px;
+  font-weight: 400;
+  font-size: large;
+}
+.outer-class {
+  position: relative;
+  padding: 5px;
+  color: #050505;
+
+  display: flex;
+  align-items: center;
+}
+
+.inner-class {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: 1s;
+  overflow-y: auto;
+}
+
+.inner-class.active {
+  height: 50vh;
+  padding: 0px;
+  overflow-y: auto;
+}
+
+.spancursor {
+  cursor: pointer;
+}

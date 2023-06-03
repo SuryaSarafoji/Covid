@@ -1,0 +1,46 @@
+.App {
+  position: relative;
+  margin: 20px 20px;
+  font-weight: 800;
+  font-size: larger;
+}
+
+.ContinentToggle {
+  margin: 20px 0 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.inner-classs {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: 1s;
+  overflow-y: auto;
+}
+
+.inner-classs.activee {
+  height: auto;
+  padding: 0px;
+  overflow-y: hidden;
+}
+
+* {
+  font-family: Serif;
+}
+
+.cursorclass {
+  cursor: pointer;
+}
+
+.image {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0.3;
+}
+body {
+  background-color: rgb(173, 173, 173);
+}

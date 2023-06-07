@@ -15,17 +15,26 @@ const options = {
 
 const Provider = ({ children }) => {
   const [sta, staFn] = useState();
+  const [temp, tempFn] = useState();
+  const [univState, univStateFn] = useState(false);
+
+  const resetTemp = () => {
+    univStateFn(false);
+    tempFn(sta);
+  };
+  let obj = { sta, staFn, temp, univState, univStateFn, resetTemp, tempFn };
 
   useEffect(() => {
     const apiCall = async () => {
       const request = await axios.request(options);
       staFn(request.data.response);
+      tempFn(request.data.response);
     };
     apiCall();
   }, []);
 
   return (
-    <CountryProviderContext.Provider value={sta}>
+    <CountryProviderContext.Provider value={obj}>
       {children}
     </CountryProviderContext.Provider>
   );

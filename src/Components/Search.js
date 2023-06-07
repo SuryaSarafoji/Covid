@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import SpecificCountrySearch from "./SpecificCountrySearch";
 import "./Search.css";
 import { HiSearchCircle, HiXCircle } from "react-icons/hi";
+import CountryProviderContext from "../Context/CountryContext";
 
 function Search() {
   const [countrySearch, countrySearchFn] = React.useState("");
+  let context = useContext(CountryProviderContext);
+
   const submitFn = (e) => {
     e.preventDefault();
     if (countrySearch) {
@@ -25,7 +28,8 @@ function Search() {
     },
   };
   let response;
-  const [specificCountry, specificCountryFn] = React.useState();
+  let [specificCountry, specificCountryFn] = React.useState();
+
   const specificCountryData = async () => {
     response = await axios.request(options);
 
@@ -36,6 +40,24 @@ function Search() {
     }
   };
 
+  const onChangeFn = (e) => {
+    countrySearchFn(e.target.value);
+  };
+
+  useEffect(() => {
+    let tempVar = countrySearch.split("");
+    context.tempFn(context.sta);
+    if (tempVar.length > 2) {
+      context.univStateFn(true);
+      let arr = context.sta.filter((item) =>
+        item.country.toLowerCase().includes(countrySearch.toLowerCase())
+      );
+
+      context.tempFn(arr);
+    } else {
+      context.univStateFn(false);
+    }
+  }, [countrySearch]);
   return (
     <div className="FullBlock">
       <form onSubmit={submitFn} className="Block">
@@ -43,9 +65,7 @@ function Search() {
           className="Search"
           type="text"
           placeholder="Enter Country"
-          onChange={(e) => {
-            countrySearchFn(e.target.value);
-          }}
+          onChange={onChangeFn}
           value={countrySearch}
         />
 

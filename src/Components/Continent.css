@@ -22,7 +22,9 @@
 }
 
 .inner-class.active {
-  height: 50vh;
+  height: auto;
+  max-height: 50vh;
+
   padding: 0px;
   overflow-y: auto;
 }

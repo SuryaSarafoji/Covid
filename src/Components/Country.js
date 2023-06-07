@@ -5,8 +5,8 @@ import "./Country.css";
 
 function Country({ continentName, classname }) {
   let response3 = useContext(CountryProviderContext);
-
-  const releventCountries = response3.filter((item) => {
+  let actual = response3.univState ? response3.temp : response3.sta;
+  const releventCountries = actual.filter((item) => {
     return item.continent === continentName;
   });
 
